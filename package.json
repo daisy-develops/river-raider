@@ -1,7 +1,7 @@
 {
   "name": "river-raider",
   "version": "0.0.1",
-  "description": "River Raider",
+  "description": "Learning canvas game development by remaking an Activision classic.",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
@@ -11,5 +11,6 @@
   "devDependencies": {
     "@babel/core": "7.2.0",
     "parcel-bundler": "^1.6.1"
-  }
+  },
+  "keywords": []
 }
