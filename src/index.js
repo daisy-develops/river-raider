@@ -14,8 +14,6 @@ const gameData = {
 const river = new GameScreen(gameData);
 const fighter = new Fighter(gameData);
 
-// new InputHandler(fighter);
-
 let lastTime = 0;
 
 function gameLoop(timestamp) {
