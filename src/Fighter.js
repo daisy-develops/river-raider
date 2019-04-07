@@ -1,6 +1,7 @@
 import fighter from "/assets/images/fighter.png";
 import fighterLeft from "/assets/images/fighterLeft.png";
 import fighterRight from "/assets/images/fighterRight.png";
+import Bullet from "./Bullet";
 
 const fighterImage = new Image();
 const fighterLeftImage = new Image();
@@ -37,6 +38,10 @@ export default class Fighter {
 
   handleKeyDown(event) {
     switch (event.keyCode) {
+      case 17: // ctrl
+      case 32: // space
+        this.fire();
+        break;
       case 37:
         this.moveLeft();
         break;
@@ -51,6 +56,7 @@ export default class Fighter {
         break;
       default:
       // do nothing
+      // alert("KEY CODE: " + event.keyCode);
     }
   }
 
@@ -66,6 +72,17 @@ export default class Fighter {
         break;
       default:
       // do nothing
+    }
+  }
+
+  fire() {
+    console.log("PEW");
+    if (!this.bullet) {
+      this.bullet = new Bullet({
+        height: this.gameHeight,
+        origin: { x: this.position.x, y: this.position.y },
+        width: this.gameWidth
+      });
     }
   }
 
@@ -103,6 +120,9 @@ export default class Fighter {
       size
     } = this;
     ctx.drawImage(image, x, y, size, size);
+    if (this.bullet) {
+      this.bullet.draw(ctx);
+    }
   }
 
   update(deltaTime) {
@@ -119,6 +139,15 @@ export default class Fighter {
       this.position.y = 0;
     } else if (this.position.y + this.size > this.gameHeight) {
       this.position.y = this.gameHeight - this.size;
+    }
+
+    // bullet
+    if (this.bullet) {
+      if (!this.bullet.destroy) {
+        this.bullet.update(deltaTime);
+      } else {
+        delete this.bullet;
+      }
     }
   }
 }
