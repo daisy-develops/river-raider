@@ -1,6 +1,14 @@
-const fighter = document.getElementsByClassName("fighter")[0];
-const fighterLeft = document.getElementsByClassName("fighterLeft")[0];
-const fighterRight = document.getElementsByClassName("fighterRight")[0];
+import fighter from "/assets/images/fighter.png";
+import fighterLeft from "/assets/images/fighterLeft.png";
+import fighterRight from "/assets/images/fighterRight.png";
+
+const fighterImage = new Image();
+const fighterLeftImage = new Image();
+const fighterRightImage = new Image();
+
+fighterImage.src = fighter;
+fighterLeftImage.src = fighterLeft;
+fighterRightImage.src = fighterRight;
 
 export default class Fighter {
   constructor({ height, width }) {
@@ -13,7 +21,7 @@ export default class Fighter {
     this.gameHeight = height;
     this.gameWidth = width;
 
-    this.image = fighter;
+    this.image = fighterImage;
 
     this.maxHorizontalSpeed = 7;
     this.maxVerticalSpeed = 7;
@@ -66,12 +74,12 @@ export default class Fighter {
   }
 
   moveLeft() {
-    this.image = fighterLeft;
+    this.image = fighterLeftImage;
     this.speed.x = -this.maxHorizontalSpeed;
   }
 
   moveRight() {
-    this.image = fighterRight;
+    this.image = fighterRightImage;
     this.speed.x = this.maxHorizontalSpeed;
   }
 
@@ -80,7 +88,7 @@ export default class Fighter {
   }
 
   stopHorizontal() {
-    this.image = fighter;
+    this.image = fighterImage;
     this.speed.x = 0;
   }
 
